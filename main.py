@@ -13,12 +13,13 @@ H2 = np.array([XlinW**2, np.log(XlinW), [1 for i in range(np.size(XlinW))]]).T
 H3 = np.array([Xnonlin, np.exp(Xnonlin)])
 
 def comp_solver(n: int,theta: list, gamma: list, X: list, Y: list, my_fit: list):
-    '''user help text goes here'''
-    #Compares our fit to one calculated by inbuilt python tools
+    '''This function returns coefficient values for our calculated fit, and plots it against Python's inbuilt fitting tool.
+        n is the order to which pythons fitting tool must fit, theta is the matrix of coefficients, gamma is the matrix containing uncertainties,
+        X and Y are lists of x and y values from the data file, my fit is the equation of the line we are trying to fit to the data points.'''
     print('a is ', theta[0], '+/-', np.sqrt(gamma[0, 0]))  # TODO: format this better to limit decimal places. f.3 type shit
     print('b is ', theta[1], '+/-', np.sqrt(gamma[1, 1]))
 
-    if np.size(theta) == 3:     #Gives flxibility for fit to have 2 or 3 unknowns
+    if np.size(theta) == 3:
         print('c is ', theta[2], '+/-', np.sqrt(gamma[2, 2]))
 
     python_fit = np.poly1d(np.polyfit(X,Y,n))
