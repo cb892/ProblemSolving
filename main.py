@@ -2,15 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import leastSquareDefs as LSD
 
-#Read in data
-Xlin, Ylin = np.loadtxt('linear_LeastSquares.txt', unpack=True)
-XlinW, YlinW = np.loadtxt('weighted_LS.txt', unpack=True)
-Xnonlin,Ynonlin = np.loadtxt('nonlinear_LS.txt', unpack=True)
-
-#Convert input X data into correct form of H matrix
-H1 = np.array([Xlin, [1 for i in range(np.size(Xlin))]]).T
-H2 = np.array([XlinW**2, np.log(XlinW), [1 for i in range(np.size(XlinW))]]).T
-H3 = np.array([Xnonlin, np.exp(Xnonlin)])
+if __name__=="__main__":
+    main()
 
 def comp_solver(n: int,theta: list, gamma: list, X: list, Y: list, my_fit: list):
     '''This function returns coefficient values for our calculated fit, and plots it against Python's inbuilt fitting tool.
@@ -96,8 +89,21 @@ def Ex3(trial_theta: list):
     solver(final_theta,final_gamma,Xnonlin,Ynonlin,my_fit)
     return 0
 
-Ex1ab()
-Ex1c(4)
-Ex2a()
-Ex2b()
-Ex3(np.array([[np.exp(3)],[1]]))  #Solutions call for A, but program functionality is easier if theta matrix uses e^A
+def main():
+    #Read in data
+    Xlin, Ylin = np.loadtxt('linear_LeastSquares.txt', unpack=True)
+    XlinW, YlinW = np.loadtxt('weighted_LS.txt', unpack=True)
+    Xnonlin,Ynonlin = np.loadtxt('nonlinear_LS.txt', unpack=True)
+
+    #Convert input X data into correct form of H matrix
+    H1 = np.array([Xlin, [1 for i in range(np.size(Xlin))]]).T
+    H2 = np.array([XlinW**2, np.log(XlinW), [1 for i in range(np.size(XlinW))]]).T
+    H3 = np.array([Xnonlin, np.exp(Xnonlin)])
+    
+    Ex1ab()
+    Ex1c(4)
+    Ex2a()
+    Ex2b()
+    Ex3(np.array([[np.exp(3)],[1]]))  #Solutions call for A, but program functionality is easier if theta matrix uses e^A
+    
+    pass
